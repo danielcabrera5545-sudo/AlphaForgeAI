@@ -3,6 +3,7 @@ from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import BigInteger
 from sqlalchemy import DateTime
+from sqlalchemy.orm import relationship
 from datetime import datetime
 
 from backend.database.base import Base
@@ -27,4 +28,9 @@ class Company(Base):
     created_at = Column(
         DateTime,
         default=datetime.utcnow
+    )
+
+    income_statements = relationship(
+        "IncomeStatement",
+        back_populates="company"
     )
